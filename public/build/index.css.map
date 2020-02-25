@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///index.css","webpack:///App.css"],"names":[],"mappings":"AAAA;IACI,wBAAwB;AAC5B,C;ACFA;IACI,SAAS;AACb,C","file":"index.css","sourcesContent":["body{\r\n    background-color: yellow;\r\n}","h2{\r\n    color:red;\r\n}"],"sourceRoot":""}
