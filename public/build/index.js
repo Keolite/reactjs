@@ -32041,13 +32041,55 @@ function (_Component) {
       message: ''
     });
 
+    _defineProperty(_assertThisInitialized(_this), "count", function () {
+      _this.setState({
+        duration: _this.state.duration - 1
+      });
+
+      if (_this.state.duration === 0) {
+        _this.clean();
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "clean", function () {
+      clearInterval(_this.state.handle);
+
+      _this.setState({
+        message: "Terminé"
+      });
+    });
+
     return _this;
   }
 
   _createClass(Timer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      //Déclenche une action toutes les 10000 millisecondes
+      var handle = setInterval(function () {
+        _this2.count();
+      }, 1000); //initialise la propriete handle en lui affectant le chrono
+
+      this.setState({
+        handle: handle
+      }); //On initialise la propriete message en initialisant le le message compteur encours
+
+      this.setState({
+        message: "Compteur en cours"
+      });
+    }
+  }, {
+    key: "componentWillUnmount",
+    //Composant sera déchargé
+    value: function componentWillUnmount() {
+      this.clean();
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Composant Timer"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.duration));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Composant Timer"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.duration), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.state.message));
     }
   }]);
 
